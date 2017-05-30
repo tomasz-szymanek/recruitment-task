@@ -26,4 +26,4 @@ npm start
 | GET    | /todo | -                                                                         | Returns list of all todos.         |   |
 | POST   | /todo | {   "value": "title of the todo",   "done": true }                        | Creates new todo, returns it's id. |   |
 | DELETE | /todo | { "id": "592d21fb3f0d452475f356cb" }                                      | Deletes todo.                      |   |
-| PUT    | todo  | {"id": "592d21fb3f0d452475f356cb","value": "new todo title","done": true} | Updates todo.                      |   |
+| PUT    | /todo  | {"id": "592d21fb3f0d452475f356cb","value": "new todo title","done": true} | Updates todo.                      |   |
