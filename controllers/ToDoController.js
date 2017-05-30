@@ -6,11 +6,7 @@ class ToDoController {
 
   static getAllTodos(req, res, next) {
     ToDo.find(function (err, todos) {
-      if (err) {
-        console.log(err);
-        res.jsonp({error: err});
-        return;
-      }
+      if (err) return res.boom.badImplementation(`MongoDB Error ${err}`);
 
       res.jsonp(todos);
     });
@@ -18,50 +14,37 @@ class ToDoController {
 
   static createTodo(req, res, next) {
     let newToDo = new ToDo(req.body);
-    newToDo.save(function (err) {
-      if (err) {
-        res.jsonp({status: 'ERROR'});
-      } else {
-        res.jsonp({status: 'OK'});
-      }
+
+    newToDo.save(function (err, todo) {
+      if (err) return res.boom.badImplementation(`MongoDB Error ${err}`);
+
+      res.jsonp({status: 'OK', todo });
     });
   }
 
   static updateTodo(req, res, next) {
     ToDo.findById(req.body.id, function (err, todo) {
-      if (err) {
-        res.jsonp({error: err});
-        return;
-      }
+      if (err) return res.boom.badImplementation(`MongoDB Error ${err}`);
 
       todo.value = req.body.value;
       todo.done = req.body.done;
 
       todo.save(function (err, todo) {
-        if(err) {
-          res.jsonp({ status: 'ERROR' });
-          return;
-        }
+        if (err) return res.boom.badImplementation(`MongoDB Error ${err}`);
 
-        res.jsonp({ status: 'OK' });
+        res.jsonp({ status: 'OK', todo });
       });
     });
   }
 
   static removeTodo(req, res, next) {
     ToDo.findById(req.body.id, function (err, todo) {
-      if (err) {
-        res.jsonp({error: err});
-        return;
-      }
+      if (err) return res.boom.badImplementation(`MongoDB Error ${err}`);
 
       todo.remove(function (err, todo) {
-        if(err) {
-          res.jsonp({ status: 'ERROR' });
-          return;
-        }
+        if (err) return res.boom.badImplementation(`MongoDB Error ${err}`);
 
-        res.jsonp({ status: 'OK' });
+        res.jsonp({ status: 'OK', todo });
       });
     });
   }
