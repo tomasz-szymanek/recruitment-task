@@ -1,0 +1,16 @@
+version: '2'
+services:
+  todo-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_ADDR=mongo
+  mongo:
+    image: mongo
