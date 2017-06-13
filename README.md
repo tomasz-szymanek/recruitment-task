@@ -3,9 +3,13 @@ Simple node.js API for the rectruiment task
 
 Create frontend todo list using tools of your choice and this API.
 
+## setting up the API server
+
+### bare-metal approach
+
 Configure MongoDB:
 1. Install MongoDB.
-2. 
+2.
 ```
 mkdir -p ./data/db
 mongod --dbpath ./data/db
@@ -20,6 +24,16 @@ Start:
 ```
 npm start
 ```
+
+### using docker
+
+1. install docker
+2. install docker-compose
+3. run docker-compose up
+
+app will listen on port 3000
+
+## API
 
 | METHOD | URL   | Example of JSON body                                                      | What it does                       |   |
 |--------|-------|---------------------------------------------------------------------------|------------------------------------|---|

@@ -11,6 +11,7 @@ const index = require('./routes/index');
 const app = express();
 
 app.use(boom());
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
